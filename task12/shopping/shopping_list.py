@@ -9,5 +9,24 @@ shopping_list_3.txt. Когда вы открыли списки покупок,
 shopping_list_1.txt, shopping_list_2.txt и shopping_list_3.txt, а затем 
 создает новый файл shopping_list.txt, в который помещает все прочитанные 
 строки без повторов и в алфавитном порядке.'''
-import sys
+list_shopping = set()
+with open('shopping_list_1.txt') as file:
+	list_shopping.update(file.readlines())
+
+with open('shopping_list_2.txt') as file:
+	list_shopping.update(file.readlines())
+
+with open('shopping_list_3.txt') as file:
+	list_shopping.update(file.readlines())
+
+result = []
+
+for i in list_shopping:
+	if i != '\n':
+		result.append(i.strip('\n'))
+
+result.sort()
+
+with open('shopping_list.txt', 'w') as file:
+	file.write('\n'.join(result))
 
